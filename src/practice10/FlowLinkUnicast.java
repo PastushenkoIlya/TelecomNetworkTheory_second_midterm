@@ -31,13 +31,13 @@ public class FlowLinkUnicast implements IAlgorithm
         for (Node node1 : netPlan.getNodes()){
             for (Node node2 : netPlan.getNodes()){
                 if(!node1.equals(node2)){
-                    netPlan.addLink(node1, node2, 0 netPlan.getNodePairEuclideanDistance(node1,node2),200000);
+                    netPlan.addLink(node1, node2, 0, netPlan.getNodePairEuclideanDistance(node1,node2),200000,null);
                 }
             }
         }
 
-        double L = netPlan.getNumberOfLinks();
-        double D = netPlan.getNumberOfDemands();
+        int L = netPlan.getNumberOfLinks();
+        int D = netPlan.getNumberOfDemands();
         OptimizationProblem op = new OptimizationProblem();
         op.addDecisionVariable("z_ue",true, new int []{1,L}, 0,1);
         op.addDecisionVariable("u_e", false, new int []{1,L},0,maximumLinkCapacity);
